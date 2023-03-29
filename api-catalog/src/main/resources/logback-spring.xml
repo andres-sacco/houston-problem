@@ -1,0 +1,7 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <logger name="com.twa.flights.api.catalog" additivity="false" level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+</configuration>

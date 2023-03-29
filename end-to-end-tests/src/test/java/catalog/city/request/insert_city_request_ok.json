@@ -1,0 +1,12 @@
+{
+  "name": "Buenos Aires",
+  "timeZone": "America/Argentina/Buenos_Aires",
+  "country": {
+    "name": "Argentina",
+    "code": "AR",
+    "continent": {
+      "name": "South America",
+      "code": "SA"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+version: '3.0'
+services:      
+  api-catalog-db:
+    container_name: api-catalog-db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'flights_catalog'
+      MYSQL_ROOT_PASSWORD: 'muppet'
+    ports:
+     - 3310:3306

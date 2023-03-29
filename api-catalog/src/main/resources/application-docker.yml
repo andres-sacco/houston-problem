@@ -1,0 +1,54 @@
+management:
+  health.db.enabled: false
+  endpoints:    
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+
+server:
+  port: 6070
+  servlet:
+    context-path: /api/flights/catalog
+
+jetty:
+  threadPool:
+    maxThreads: 10
+    minThreads: 10
+
+chaos:
+  monkey:
+    enabled: false
+    watcher:
+      restController: true
+    assaults:
+      exceptionsActive: true
+      latencyActive: true   
+      latencyRangeStart: 10
+      latencyRangeEnd: 5000 
+       
+spring:
+  profiles:
+    active: default
+  
+  flyway:
+    locations: classpath:db/migration
+    sql-migration-prefix: V
+    repeatable-sql-migration-prefix: R
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+  datasource:
+    url: "jdbc:mysql://api-catalog-db:3306/flights_catalog?autoReconnect=true"
+    username: root
+    password: muppet
+    driverClassName: com.mysql.cj.jdbc.Driver
+    validation-query: select 1;
+    maxActive: 100
+  jpa:
+    show-sql: false
+    generate-ddl: false    
+    properties:    
+      hibernate:
+        ejb.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy                
+        dialect: org.hibernate.dialect.MySQLDialect
+        hbm2ddl.auto: validate
