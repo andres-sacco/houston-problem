@@ -5,6 +5,9 @@ import com.twa.flights.api.catalog.model.City;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.quickperf.junit5.QuickPerfTest;
+import org.quickperf.jvm.allocation.AllocationUnit;
+import org.quickperf.jvm.annotations.HeapSize;
+import org.quickperf.jvm.annotations.MeasureHeapAllocation;
 import org.quickperf.spring.sql.QuickPerfSqlConfig;
 import org.quickperf.sql.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +51,8 @@ public class CityServiceTest {
     @ExpectSelect(2) // Validate the number of queries that are executed
     @ExpectMaxQueryExecutionTime(thresholdInMilliSeconds = 2) // This check the duration of the execution of the query
     @AnalyzeSql
+    @MeasureHeapAllocation
+    @HeapSize(value = 60, unit = AllocationUnit.MEGA_BYTE)
     void should_get_a_city() {
         CityDTO city = service.getByCode("BUE");
 
